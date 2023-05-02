@@ -1,17 +1,18 @@
 
-<script> document.cookie1 = "session=test GDPR"; document.cookie1 = "favorite_task=collect Data";
-  function alertCookie() { alert(document.cookie1); } </script>
+<script> document.cookie = "session=test GDPR";
+ document.cookie = "favorite_task=collect Data";
+  function alertCookie() { alert(document.cookie); } </script>
 <body> Bine ai venit la lab <button onclick="alertCookie()">Show cookies</button> </body>
 
 
 Example 1
 <script>
-    document.cookie2 = "name=oeschger; SameSite=None; Secure";
-    document.cookie2 = "favorite_food=tripe; SameSite=None; Secure";
+    document.cookie = "name=oeschger; SameSite=None; Secure";
+    document.cookie = "favorite_food=tripe; SameSite=None; Secure";
 
 function showCookies() {
   const output = document.getElementById("cookies");
-  output.textContent = `> ${document.cookie2}`;
+  output.textContent = `> ${document.cookie}`;
 }
 
 function clearOutputCookies() {
@@ -32,10 +33,10 @@ function clearOutputCookies() {
 
 Example 2
 <script> 
-document.cookie3 = "test1=Hello; SameSite=None; Secure";
-document.cookie3 = "test2=World; SameSite=None; Secure";
+document.cookie = "test1=Hello; SameSite=None; Secure";
+document.cookie = "test2=World; SameSite=None; Secure";
 
-const cookieValue = document.cookie3
+const cookieValue = document.cookie
   .split("; ")
   .find((row) => row.startsWith("test2="))
   ?.split("=")[1];
@@ -88,4 +89,28 @@ function clearOutputDoOnce() {
 
 <div>
   <code id="do-once"></code>
+</div>
+
+Example 4 
+<script>
+    function resetOnce() {
+        document.cookie =
+    "doSomethingOnlyOnce=; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=None; Secure";
+
+  const output = document.getElementById("reset-once");
+  output.textContent = "> Reset!";
+}
+
+function clearOutputResetOnce() {
+  const output = document.getElementById("reset-once");
+  output.textContent = "";
+}
+</script>
+
+<button onclick="resetOnce()">Reset only once cookie</button>
+
+<button onclick="clearOutputResetOnce()">Clear</button>
+
+<div>
+  <code id="reset-once"></code>
 </div>
